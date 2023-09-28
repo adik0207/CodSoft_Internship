@@ -12,17 +12,17 @@ data = pd.read_csv('C:/Users/hp/Downloads/archive/creditcard.csv')
 x = data.drop('Class', axis=1)
 y = data['Class']
 
-# Split the data into training and testing sets
+# Splitting the data into training and testing sets
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=40)
 
-# Create and train a Random Forest Classifier
+# Creating and train a Random Forest Classifier
 clf = RandomForestClassifier(n_estimators=50, random_state=40)
 clf.fit(x_train, y_train)
 
-# Make predictions on the test set
+# Making predictions on the test set
 y_pred = clf.predict(x_test)
 
-# Evaluate the model
+# Evaluating the model
 accuracy = accuracy_score(y_test, y_pred)
 confusion = confusion_matrix(y_test, y_pred)
 classification_report_str = classification_report(y_test, y_pred)
