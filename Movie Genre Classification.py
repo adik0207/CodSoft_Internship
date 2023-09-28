@@ -5,8 +5,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, accuracy_score
 
-# Load and Prepare Data
-# Load the dataset from the CSV file
+# Loading and Prepare Data
 df = pd.read_csv('D:/Engineering/CodSoft/Movie Genre Classification/Movie Genre Classification 1/wiki_movie_plots_deduped.csv')
 
 X = df['Plot']
@@ -18,10 +17,10 @@ def preprocess_text(text):
     text = ''.join([char for char in text if char not in string.punctuation])  # Remove punctuation
     return text
 
-# Apply preprocessing to the text data
+# Applying preprocessing to the text data
 X = X.apply(preprocess_text)
 
-# Step 3: Split the Data
+# Splitting the Data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 # TF-IDF Vectorization
@@ -29,7 +28,7 @@ tfidf_vectorizer = TfidfVectorizer(max_features=5000)  # You can adjust the max_
 X_train_tfidf = tfidf_vectorizer.fit_transform(X_train)
 X_test_tfidf = tfidf_vectorizer.transform(X_test)
 
-# Step 5: Train the Classifier (Multinomial Naive Bayes)
+# Training the Classifier (Multinomial Naive Bayes)
 nb_classifier = MultinomialNB()
 nb_classifier.fit(X_train_tfidf, y_train)
 
